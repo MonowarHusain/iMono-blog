@@ -1,22 +1,87 @@
 ---
 layout: default
 ---
-<article class="post" style="max-width: 800px; margin: 0 auto; padding: 2rem 1rem; font-family: sans-serif;">
-  <header class="post-header" style="margin-bottom: 2rem; border-bottom: 1px solid #eee; padding-bottom: 1rem;">
-    <h1 class="post-title" style="margin: 0 0 0.5rem 0;">{{ page.title | escape }}</h1>
-    <p class="post-meta" style="color: #666; font-size: 0.9em; margin: 0;">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap');
+
+  .post-article {
+    font-family: 'Fira Code', monospace !important;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    color: #24292e;
+  }
+
+  .post-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #0366d6;
+    /* Function Blue */
+    margin: 0 0 0.5rem 0;
+  }
+
+  .post-title::before {
+    content: "class ";
+    color: #d73a49;
+    font-size: 1.2rem;
+  }
+
+  .post-meta {
+    color: #6a737d;
+    /* Comment Gray */
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #e1e4e8;
+    padding-bottom: 1rem;
+  }
+
+  .post-meta::before {
+    content: "// ";
+  }
+
+  .post-content {
+    line-height: 1.8;
+    font-size: 1rem;
+  }
+
+  /* Styling subheaders inside posts to look like functions */
+  .post-content h2::before {
+    content: "public void ";
+    color: #d73a49;
+  }
+
+  .post-content h3::before {
+    content: "// ";
+    color: #6a737d;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 3rem;
+    color: #d73a49;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .back-link::before {
+    content: "return ";
+  }
+</style>
+
+<article class="post-article">
+  <header class="post-header">
+    <h1 class="post-title">{{ page.title | escape }}</h1>
+    <p class="post-meta">
       <time datetime="{{ page.date | date_to_xmlschema }}">
         {{ page.date | date: "%B %d, %Y" }}
       </time>
-      {% if page.author %} • <span itemprop="author">{{ page.author }}</span>{% endif %}
+      {% if page.author %} • author: "{{ page.author }}"{% endif %}
     </p>
   </header>
 
-  <div class="post-content" style="line-height: 1.6; font-size: 1.1em; color: #333;">
+  <div class="post-content">
     {{ content }}
   </div>
 
-  <div style="margin-top: 3rem;">
-    <a href="{{ '/' | relative_url }}" style="color: #0366d6; text-decoration: none;">&larr; Back to Archive</a>
-  </div>
+  <a href="{{ '/' | relative_url }}" class="back-link">archive();</a>
 </article>
