@@ -5,6 +5,14 @@ title: Home
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap');
 
+  :root {
+    --bg-color: #ffffff;
+    --text-color: #1a1a1a;
+    --accent-color: #0366d6;
+    --border-color: #e1e4e8;
+    --gray-text: #6a737d;
+  }
+
   .imono-container {
     font-family: 'Fira Code', monospace !important;
     max-width: 1100px;
@@ -14,91 +22,105 @@ title: Home
     padding: 50px 20px;
   }
 
-  /* Header Branding */
+  /* Feed Header */
   .archive-header h1 {
-    font-size: 0.85rem;
-    color: #6a737d;
+    font-size: 0.9rem;
+    color: var(--gray-text);
+    text-transform: uppercase;
+    letter-spacing: 2px;
   }
 
-  .archive-header h1::before {
-    content: "> system.logs --all ";
-  }
-
-  /* Post Preview Styles */
+  /* Post Previews */
   .post-date {
-    color: #6a737d !important;
-    font-size: 0.8rem !important;
+    color: var(--gray-text) !important;
+    font-size: 0.85rem !important;
+    font-weight: 500;
   }
 
-  .post-date::before {
-    content: "[";
-  }
-
-  .post-date::after {
-    content: "]";
-  }
-
-  .post-preview h2::before {
-    content: "• ";
-    color: #0366d6;
+  .post-preview h2 {
+    margin: 0 0 15px 0;
+    font-size: 1.6rem;
+    font-weight: 600;
   }
 
   .post-preview h2 a {
-    color: #0366d6 !important;
-    text-transform: none !important;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.2s;
   }
 
-  /* Tag Styling */
+  .post-preview h2 a:hover {
+    color: var(--accent-color);
+  }
+
   .post-tags span {
-    border: 1px solid #e1e4e8 !important;
+    border: 1px solid var(--border-color);
+    padding: 3px 12px;
+    font-size: 0.7rem;
+    border-radius: 4px;
+    color: var(--gray-text);
     background: #f6f8fa;
-    color: #0366d6 !important;
   }
 
-  .post-tags span::before {
-    content: "#";
-  }
-
-  /* Sidebar: File Explorer Style */
+  /* Sidebar */
   .sidebar h3 {
-    font-size: 0.8rem;
-    color: #d73a49;
-    border-bottom: none !important;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2px solid var(--text-color);
+    display: inline-block;
+    margin-bottom: 25px;
+    padding-bottom: 5px;
   }
 
-  .sidebar h3::before {
-    content: "▼ ";
-    font-size: 0.6rem;
+  .category-link {
+    text-decoration: none;
+    color: var(--text-color);
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    padding: 5px 0;
   }
 
-  .category-link span:first-child::before {
-    content: "📁 ";
-    font-size: 0.8rem;
-  }
-
-  /* Form Inputs */
+  /* Contact Form */
   input,
   textarea {
     font-family: 'Fira Code', monospace;
-    background: #f6f8fa;
-    border: 1px solid #e1e4e8 !important;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 0.85rem;
+    background: #fcfcfc;
+    outline: none;
+  }
+
+  input:focus,
+  textarea:focus {
+    border-color: var(--accent-color);
   }
 
   button {
     font-family: 'Fira Code', monospace;
-    background: #24292e !important;
-    text-transform: lowercase;
+    background: var(--text-color);
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: opacity 0.2s;
   }
 
-  button::before {
-    content: "./";
+  button:hover {
+    opacity: 0.9;
   }
 </style>
 
 <div class="imono-container">
   <div class="feed-section" style="flex: 2.5;">
     <header class="archive-header" style="margin-bottom: 60px; border-bottom: 1px solid #f0f0f0; padding-bottom: 20px;">
-      <h1>Technical Archive & Logic Logs</h1>
+      <h1>Technical Archive & Notes</h1>
     </header>
 
     {% for post in site.posts %}
@@ -108,20 +130,18 @@ title: Home
       </div>
 
       <div class="post-content" style="flex: 1;">
-        <h2 style="margin: 0 0 15px 0; font-size: 1.5rem; font-weight: 600;">
-          <a href="{{ post.url | relative_url }}" style="text-decoration: none;">
-            {{ post.title }}()
-          </a>
+        <h2>
+          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
         </h2>
 
         <div class="post-tags" style="display: flex; gap: 8px; margin-bottom: 20px;">
           {% for category in post.categories %}
-          <span style="padding: 3px 10px; font-size: 0.7rem; border-radius: 4px;">{{ category }}</span>
+          <span>{{ category }}</span>
           {% endfor %}
         </div>
 
-        <p style="color: #444; font-size: 0.95rem; line-height: 1.6; margin: 0;">
-          {{ post.excerpt | strip_html | truncatewords: 30 }}
+        <p style="color: #555; font-size: 1rem; line-height: 1.7; margin: 0;">
+          {{ post.excerpt | strip_html | truncatewords: 35 }}
         </p>
       </div>
     </article>
@@ -130,12 +150,11 @@ title: Home
 
   <aside class="sidebar" style="flex: 1; border-left: 1px solid #f8f8f8; padding-left: 40px;">
     <div style="position: sticky; top: 40px;">
-      <h3>Directory</h3>
+      <h3>Categories</h3>
       <ul style="list-style: none; padding: 0; margin-bottom: 60px;">
         {% for category in site.categories %}
-        <li style="margin-bottom: 12px; font-size: 0.85rem;">
-          <a href="#" class="category-link"
-            style="text-decoration: none; color: #444; display: flex; justify-content: space-between;">
+        <li style="margin-bottom: 10px;">
+          <a href="#" class="category-link">
             <span>{{ category[0] }}</span>
             <span style="color: #ccc;">{{ category[1].size }}</span>
           </a>
@@ -143,21 +162,59 @@ title: Home
         {% endfor %}
       </ul>
 
-      <h3>Inquiry.exe</h3>
-      <div id="relay-form" style="display: flex; flex-direction: column; gap: 12px; margin-top: 20px;">
-        <input type="text" id="name" placeholder="user_name" required style="padding: 10px;">
-        <input type="email" id="email" placeholder="user_email" style="padding: 10px;">
-        <textarea id="message" placeholder="String message = '...';" required
-          style="padding: 10px; height: 100px;"></textarea>
-        <button id="send-btn" onclick="sendToRelay()" style="padding: 12px; color: white; cursor: pointer;">
-          execute_notify();
-        </button>
-        <p id="status-msg" style="font-size: 0.7rem; text-align: center; margin-top: 10px;"></p>
+      <h3>Contact</h3>
+      <p style="font-size: 0.8rem; color: var(--gray-text); margin-bottom: 20px;">
+        Questions or technical inquiries? Reach out directly below.
+      </p>
+
+      <div id="relay-form" style="display: flex; flex-direction: column; gap: 12px;">
+        <input type="text" id="name" placeholder="Your Name" required>
+        <input type="email" id="email" placeholder="Email Address">
+        <textarea id="message" placeholder="Message content..." required style="height: 120px;"></textarea>
+        <button id="send-btn" onclick="sendToRelay()">SEND MESSAGE</button>
+        <p id="status-msg" style="font-size: 0.75rem; text-align: center; margin-top: 10px;"></p>
       </div>
     </div>
   </aside>
 </div>
 
 <script>
-  // ... (Keep your existing script here, it works perfectly) ...
+  async function sendToRelay() {
+    const btn = document.getElementById('send-btn');
+    const status = document.getElementById('status-msg');
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+
+    if (!name || !message) {
+      status.innerText = "Error: Name and Message are required.";
+      status.style.color = "#e74c3c";
+      return;
+    }
+
+    btn.innerText = "SENDING...";
+    btn.disabled = true;
+
+    try {
+      const response = await fetch('https://api.imono.bro.bd/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, message })
+      });
+
+      if (response.ok) {
+        status.innerText = "Success: Message sent.";
+        status.style.color = "#2ecc71";
+        document.getElementById('name').value = "";
+        document.getElementById('email').value = "";
+        document.getElementById('message').value = "";
+      } else { throw new Error(); }
+    } catch (err) {
+      status.innerText = "Error: Could not connect to server.";
+      status.style.color = "#e74c3c";
+    } finally {
+      btn.innerText = "SEND MESSAGE";
+      btn.disabled = false;
+    }
+  }
 </script>
