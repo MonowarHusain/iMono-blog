@@ -10,7 +10,7 @@ Do you ever feel like you're caught in a loop? A cycle of big dreams, exciting i
 The good news is that this isn't about who you are; it's about how your brain perceives tasks. When a goal feels overwhelmingly large or complex, your brain flags it as a difficult challenge, often leading to avoidance.
 
 ![Morning Routine Preparation](https://i.imgur.com/OaRZfWR.jpeg)
-*Figure 1.0: Reducing friction by preparing the environment in advance.*
+
 
 ## Strategies to Outsmart the Brain
 
