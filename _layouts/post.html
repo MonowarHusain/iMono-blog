@@ -66,6 +66,30 @@ layout: default
   .back-link::before {
     content: "return ";
   }
+
+  /* Styling images to match the 'Logic' look */
+  .post-content img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #e1e4e8;
+    /* Matches GitHub's UI border */
+    border-radius: 6px;
+    margin: 25px 0;
+    display: block;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    /* Subtle depth */
+  }
+
+  /* Optional: styling for image captions */
+  .post-content em {
+    display: block;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #6a737d;
+    /* Comment Gray */
+    margin-top: -15px;
+    margin-bottom: 25px;
+  }
 </style>
 
 <article class="post-article">
