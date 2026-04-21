@@ -12,7 +12,7 @@ Do you ever feel like you're caught in a loop? A cycle of big dreams, exciting i
 
 The good news is that this isn't about who you are; it's about how your brain perceives tasks. When a goal feels overwhelmingly large or complex, your brain flags it as `Status: TOO_HARD`. 
 
-![Morning Routine Preparation](/assets/images/dream-photo.jpg)
+![Morning Routine Preparation](/assets/images/dream-photo.png)
 *// Fig 1.0: Reducing friction by preparing the environment (nostalgic warm palette).*
 
 ## public void outsmart_the_brain() {
