@@ -1,0 +1,8 @@
+title: "iMono-blog"
+url: "https://monowarhusain.github.io"
+baseurl: "/iMono-blog"
+theme: minima
+
+# Architecture Fix 1: Stop hiding "Today's" posts by forcing timezone and future posts
+timezone: "Asia/Dhaka"
+future: true
